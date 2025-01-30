@@ -1,56 +1,44 @@
 {
-    "manifest_version": 3,
-    "name": "Chrome Extension Template",
-    "description": "A Chrome Extension created using a template",
-    "version": "0.0.1",
-    "author": "Clyde D'Souza",
-    "icons": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    },
-    "omnibox": { 
-      "keyword" : "@@" 
-    },    
-    "permissions": [
-      "storage"
-    ],
-    "chrome_url_overrides" : {
-      "newtab": "newtab.html"
-    },
-    "options_ui": {
-      "page": "options.html",
-      "open_in_tab": true
-    },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [{
-      "matches": ["*://github.com/*"],
-      "js": ["content_scripts.js"]
-    }],
-    "action": {
-      "default_popup": "popup.html",
-      "default_title": "Open template popup"
-    },
-    "commands": {
-      "turn-on": {
-        "suggested_key": {
-          "default": "Alt + Shift + M"
-        },
-        "description": "Adds an ON badge to the action icon."
-      },
-      "turn-off": {
-        "suggested_key": {
-          "default": "Alt + Shift + N"
-        },
-        "description": "Adds an OFF badge to the action icon."
-      },
-      "_execute_action": {
-        "suggested_key": {
-          "default": "Alt + Shift + L"
-        }
-      }
+  "manifest_version": 3,
+  "name": "Wei Resolver",
+  "description": "Append zeros to token value",
+  "version": "0.0.1",
+  "author": "thecoderabbi",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "omnibox": { 
+    "keyword" : "@@" 
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://etherscan.io/*",
+        "https://sepolia.etherscan.io/*",
+        "https://holesky.etherscan.io/*",
+        "https://goerli.etherscan.io/*",
+        "https://optimistic.etherscan.io/*",
+        "https://sepolia-optimism.etherscan.io/*",
+        "https://basescan.org/*",
+        "https://sepolia.basescan.org/*",
+        "https://polygonscan.com/*",
+        "https://scrollscan.com/*",
+        "https://sepolia.scrollscan.com/*",
+        "https://sepolia.lineascan.build/*",
+        "https://arbiscan.io/*",
+        "https://sepolia.arbiscan.io/*",
+        "https://bscscan.com/*",
+        "https://testnet.bscscan.com/*",
+        "https://snowtrace.io/*",
+        "https://testnet.snowtrace.io/*",
+        "https://blastscan.io/*",
+        "https://sepolia.blastscan.io/*"
+      ],
+      "js": [
+        "content_scripts.js"
+      ]
     }
-  }
-  
+  ]
+}
