@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import AddZeroesButton from './components/AddZeroesButton.jsx';
@@ -15,30 +14,19 @@ function addButtonsToInputs() {
     if (!iframe.contentDocument) return;
 
     const iframeDoc = iframe.contentDocument;
-    const mainButton = document.getElementById('dropdownMenuButton3dd');
+    const mainButton = document.getElementById('dropdownMenuButton3');
     const bgColor =
       mainButton?.computedStyleMap().get('background-color').toString() ||
       '#24262b';
 
     iframeDoc.querySelectorAll('[title="Add Zeroes"]').forEach((button) => {
-      if (!button.nextElementSibling?.classList.contains('add-zeros-button')) {
-        const input = button.parentElement.querySelector('input');
-        const addZeroesButton = document.createElement('div');
+      if (!button.parentElement.querySelector('.add-zeroes-button')) {
+        const addZeroesButton = document.createElement('span');
 
         button.insertAdjacentElement('afterend', addZeroesButton);
 
         createRoot(addZeroesButton).render(
-          <AddZeroesButton
-            bgColor={bgColor}
-            onClick={() => {
-              if (!input.value) {
-                input.value += '1000000000000000000';
-              } else {
-                input.value += '000000000000000000';
-              }
-              input.focus();
-            }}
-          />
+          <AddZeroesButton bgColor={bgColor} button={button} />
         );
       }
     });
@@ -47,7 +35,8 @@ function addButtonsToInputs() {
 
 export default function App() {
   useEffect(() => {
-    addButtonsToInputs();
+    // addButtonsToInputs();
+    console.log('use Effect call');
     const observer = new MutationObserver(addButtonsToInputs);
     observer.observe(document.body, { childList: true, subtree: true });
 

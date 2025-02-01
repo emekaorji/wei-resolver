@@ -3,6 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+  devtool: 'source-map',
   entry: {
     content_scripts: ['./src/index.js'],
   },
@@ -14,20 +15,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$/, // Updated to include JSX files
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: ['@babel/plugin-transform-runtime'],
           },
         },
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'], // Allow imports without file extensions
   },
   plugins: [
     new CopyWebpackPlugin({
@@ -38,10 +43,11 @@ module.exports = {
           to: path.resolve(__dirname, 'dist'),
           context: 'src/',
         },
+        {
+          from: './src/styles/global.css',
+          to: 'styles.css',
+        },
       ],
     }),
   ],
-  resolve: {
-    extensions: ['.js', '.jsx'], // Allow importing without specifying file extension
-  },
 };

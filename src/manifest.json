@@ -38,7 +38,8 @@
       ],
       "js": [
         "content_scripts.js"
-      ]
+      ],
+      "css": ["styles.css"]
     }
   ]
 }
