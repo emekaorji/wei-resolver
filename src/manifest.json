@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Wei Resolver",
   "description": "Append zeros to token value",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "author": "thecoderabbi",
   "icons": {
     "16": "icons/icon16.png",
