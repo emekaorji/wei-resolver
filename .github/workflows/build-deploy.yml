@@ -52,6 +52,12 @@ jobs:
       with:
         name: production-files
         path: ./dist
+
+    - name: List contents of dist directory
+      run: ls -la ./dist
+      
+    - name: List contents of root directory
+      run: ls -la
     
     - name: Zip contents
       uses: montudor/action-zip@v1
