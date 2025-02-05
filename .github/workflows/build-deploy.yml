@@ -33,42 +33,19 @@ jobs:
     
     - name: Build project
       run: npm run build:prod
-
-    - name: Upload production-ready build files
-      uses: actions/upload-artifact@v4
-      with:
-        name: production-files
-        path: ./dist
-
-  deploy:
-    name: Deploy chrome extension
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: production-files
-        path: ./dist
-
-    - name: List contents of dist directory
-      run: ls -la ./dist
-      
-    - name: List contents of root directory
-      run: ls -la
     
     - name: Zip contents
       uses: montudor/action-zip@v1
       with:
         args: zip -qq -r extension.zip dist
 
-    - name: Publish to Chrome store
-      uses: Klemensas/chrome-extension-upload-action@v1.3
-      with:
-        refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
-        client-id: ${{ secrets.CHROME_CLIENT_ID }}
-        client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
-        file-name: './extension.zip'
-        app-id: ${{ secrets.CHROME_APP_ID }}
+    - name: Install dependencies for upload script
+      run: npm install node-fetch
+    
+    - name: Upload and publish to Chrome Web Store
+      run: node upload.js
+      env:
+        CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+        CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+        APP_ID: ${{ secrets.CHROME_APP_ID }}
