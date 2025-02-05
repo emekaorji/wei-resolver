@@ -64,6 +64,10 @@ async function publishExtension(accessToken) {
     }
   );
 
+  if (!response.ok) {
+    throw new Error(`Failed to publish extension: ${response.statusText}`);
+  }
+
   const data = await response.json();
   return data;
 }
