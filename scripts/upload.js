@@ -80,7 +80,9 @@ async function publishExtension(accessToken) {
     } else {
       console.error('Upload failed:', uploadResponse);
     }
+    process.exit(0);
   } catch (error) {
     console.error('Error:', error);
+    process.exit(1);
   }
 })();
