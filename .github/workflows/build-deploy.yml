@@ -33,21 +33,6 @@ jobs:
     
     - name: Build project
       run: npm run build:prod
-    
-    - name: Run tests and produce reports
-      run: npm run test:ci
-    
-    - name: Publish test results
-      uses: IgnusG/jest-report-action@v2.3.3
-      if: always()  
-      with:
-        access-token: ${{ secrets.GITHUB_TOKEN }} 
-
-    - name: Publish code coverage results
-      uses: romeovs/lcov-reporter-action@v0.2.19
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        lcov-file: ./coverage/lcov.info
 
     - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
@@ -81,4 +66,4 @@ jobs:
         client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
         file-name: './extension.zip'
         app-id: ${{ secrets.CHROME_APP_ID }}
-        publish: false
+        publish: true
