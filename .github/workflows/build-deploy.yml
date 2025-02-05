@@ -43,7 +43,7 @@ jobs:
       run: npm install node-fetch
     
     - name: Upload and publish to Chrome Web Store
-      run: node upload.js
+      run: node ./scripts/upload.js
       env:
         CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
         CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
