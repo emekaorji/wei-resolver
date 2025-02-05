@@ -19,6 +19,10 @@ async function getAccessToken() {
     }),
   });
 
+  if (!response.ok) {
+    throw new Error(`Failed to get access token: ${response.statusText}`);
+  }
+
   const data = await response.json();
   return data.access_token;
 }
@@ -39,6 +43,10 @@ async function uploadExtension(accessToken) {
       body: zipFile,
     }
   );
+
+  if (!response.ok) {
+    throw new Error(`Failed to upload extension: ${response.statusText}`);
+  }
 
   const data = await response.json();
   return data;
