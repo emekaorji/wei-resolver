@@ -59,11 +59,10 @@ jobs:
         args: zip -qq -r extension.zip dist
 
     - name: Publish to Chrome store
-      uses: emekaorji/chrome-extension-upload-action@v1
+      uses: Klemensas/chrome-extension-upload-action@v1.3
       with:
         refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
         client-id: ${{ secrets.CHROME_CLIENT_ID }}
         client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
         file-name: './extension.zip'
         app-id: ${{ secrets.CHROME_APP_ID }}
-        publish: true
