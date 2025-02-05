@@ -35,8 +35,7 @@ function addButtonsToInputs() {
 
 export default function App() {
   useEffect(() => {
-    // addButtonsToInputs();
-    console.log('use Effect call');
+    addButtonsToInputs();
     const observer = new MutationObserver(addButtonsToInputs);
     observer.observe(document.body, { childList: true, subtree: true });
 

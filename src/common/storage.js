@@ -1,9 +1,15 @@
-export const getStorage = (componentKey, callback) => {
-    chrome.storage.sync.get([componentKey], function(result) {
-        callback(result[componentKey]);
+export const getStorage = (key) => {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get([key], (data) => {
+      resolve(data[key]);
     });
+  });
 };
 
-export const setStorage = (componentKey, value) => {
-    chrome.storage.sync.set({[componentKey]: value});
+export const setStorage = (key, value) => {
+  return new Promise((resolve) => {
+    chrome.storage.sync.set({ [key]: value }, () => {
+      resolve();
+    });
+  });
 };
