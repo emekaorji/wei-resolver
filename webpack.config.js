@@ -25,10 +25,6 @@ module.exports = {
           },
         },
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
     ],
   },
   resolve: {
@@ -42,10 +38,6 @@ module.exports = {
           from: 'icons/*',
           to: path.resolve(__dirname, 'dist'),
           context: 'src/',
-        },
-        {
-          from: './src/styles/global.css',
-          to: 'styles.css',
         },
       ],
     }),
