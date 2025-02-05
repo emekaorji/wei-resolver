@@ -1,5 +1,5 @@
-const fs = require('fs');
-const fetch = require('node-fetch');
+import fs from 'fs';
+import fetch from 'node-fetch';
 
 const REFRESH_TOKEN = process.env.CHROME_REFRESH_TOKEN;
 const CLIENT_ID = process.env.CHROME_CLIENT_ID;
